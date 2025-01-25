@@ -688,7 +688,7 @@ const Portfolio = () => {
             </div>
           </div>
           <p className="text-xl mb-8 max-w-3xl">
-            I'm a software engineer who loves building strong, reliable software. I focus on writing clean code, testing every part, and learning constantly.
+          who loves building strong, reliable software. I focus on writing clean code, testing every part, and learning constantly.
           </p>
           <div className="flex gap-4">
             <motion.button
@@ -718,7 +718,7 @@ const Portfolio = () => {
       </div>
 
       {/* Skills & Recent Activity - Better medium screen layout */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 mb-8 sm:mb-12">
+      <div id="skills" className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 mb-8 sm:mb-12">
         <div className="border-4 border-black bg-white p-4 sm:p-6 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
           <SkillsOverviewCard />
         </div>
