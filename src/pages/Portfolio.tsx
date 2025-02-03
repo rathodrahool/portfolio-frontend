@@ -63,52 +63,67 @@ const RecentActivityCard = () => {
   const activities = [
     {
       type: "project",
-      project: "Property Dollar",
-      description: "Property management platform",
+      project: "Node Skeleton",
+      description: "Boilerplate for Node.js backend projects",
       tasks: [
         {
-          name: "User Authentication",
+          name: "Authentication Module",
           status: "completed",
-          lastUpdated: "2 hours ago"
+          lastUpdated: "2 days ago"
         },
         {
-          name: "Property Listing API",
-          status: "in-progress",
-          lastUpdated: "1 hour ago"
-        }
-      ]
-    },
-    {
-      type: "project",
-      project: "iManagify",
-      description: "Infrastructure management tool",
-      tasks: [
-        {
-          name: "API Integration Tests",
+          name: "Error Handling Setup",
           status: "completed",
-          lastUpdated: "5 hours ago"
+          lastUpdated: "3 days ago"
         },
         {
-          name: "Real-time Updates",
+          name: "Database Integration",
           status: "in-progress",
-          lastUpdated: "3 hours ago"
-        }
-      ]
-    },
-    {
-      type: "project",
-      project: "EasyBankCore",
-      description: "Core Banking System",
-      tasks: [
-        {
-          name: "Transaction Module",
-          status: "completed",
           lastUpdated: "1 day ago"
+        }
+      ]
+    },
+    {
+      type: "project",
+      project: "Hubstaff Clone",
+      description: "Time tracking and productivity monitoring system",
+      tasks: [
+        {
+          name: "Screenshot Module",
+          status: "completed",
+          lastUpdated: "1 week ago"
         },
         {
-          name: "Account Management API",
+          name: "Activity Tracking",
           status: "in-progress",
-          lastUpdated: "4 hours ago"
+          lastUpdated: "4 days ago"
+        },
+        {
+          name: "Report Generation",
+          status: "in-progress",
+          lastUpdated: "2 days ago"
+        }
+      ]
+    },
+    {
+      type: "project",
+      project: "Portfolio System",
+      description: "Portfolio website with admin panel",
+      tasks: [
+        {
+          name: "Admin Dashboard API",
+          status: "completed",
+          lastUpdated: "2 weeks ago"
+        },
+        {
+          name: "Project Management",
+          status: "in-progress",
+          lastUpdated: "1 week ago"
+        },
+        {
+          name: "Analytics Integration",
+          status: "in-progress",
+          lastUpdated: "5 days ago"
         }
       ]
     }
@@ -273,24 +288,21 @@ const ProjectsShowcaseCard = () => {
       description: "Core Banking System with comprehensive submodules",
       tech: ["Node.js", "TypeScript", "SQL"],
       metrics: { performance: 95, coverage: 90 },
-      github: "#",
-      live: "#"
+      type: "production" // Added type field
     },
     {
       name: "Property Dollar",
       description: "Property management and investment tracking platform",
       tech: ["NestJS", "PostgreSQL", "Jest"],
       metrics: { performance: 92, coverage: 85 },
-      github: "#",
-      live: "#"
+      type: "production"
     },
     {
       name: "iManagify",
       description: "Infrastructure maintenance management tool",
       tech: ["NestJS", "PostgreSQL", "TypeScript"],
       metrics: { performance: 88, coverage: 92 },
-      github: "#",
-      live: "#"
+      type: "production"
     }
   ];
 
@@ -314,26 +326,11 @@ const ProjectsShowcaseCard = () => {
                 {project.name}
               </h4>
               <div className="flex gap-2">
-                <motion.a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.05 }}
-                  className="flex items-center gap-1 bg-black text-white px-4 py-1 border-2 border-black"
-                >
-                  <BsGithub size={16} />
-                  Code
-                </motion.a>
-                <motion.a
-                  href={project.live}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.05 }}
-                  className="flex items-center gap-1 bg-green-300 px-4 py-1 border-2 border-black"
-                >
-                  <BsArrowUpRight size={16} />
-                  Live Demo
-                </motion.a>
+                {project.type === "production" && (
+                  <span className="bg-green-300 px-4 py-1 border-2 border-black text-sm">
+                    Production
+                  </span>
+                )}
               </div>
             </div>
             <p className="text-base mb-4">{project.description}</p>
@@ -554,7 +551,7 @@ const ActionButtons = ({ onContactClick }: { onContactClick: () => void }) => {
     <div className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-4 md:gap-6">
       <motion.button
         whileHover={{ scale: 1.05 }}
-        className="w-full sm:w-auto bg-black text-white px-6 py-3 border-4 border-black font-bold shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-2 hover:translate-y-2 transition-all"
+        className="w-full sm:w-auto bg-green-500 text-white px-6 py-3 border-4 border-black font-bold shadow-[8px_8px_0px_0px_rgba(34,197,94,1)] hover:shadow-none hover:translate-x-2 hover:translate-y-2 transition-all"
         onClick={handleDownloadResume}
       >
         <div className="flex items-center gap-2">
@@ -693,7 +690,7 @@ const Portfolio = () => {
           <div className="flex gap-4">
             <motion.button
               whileHover={{ scale: 1.05 }}
-              className="bg-black text-white px-6 py-3 border-4 border-black font-bold shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]"
+              className="bg-green-500 text-white px-6 py-3 border-4 border-black font-bold shadow-[8px_8px_0px_0px_rgba(34,197,94,1)]"
               onClick={() => document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })}
             >
               View My Work →
@@ -800,4 +797,4 @@ const Portfolio = () => {
   );
 };
 
-export default Portfolio; 
+export default Portfolio;
