@@ -1,5 +1,5 @@
 import React, { useState} from "react";
-import { BsGithub, BsLinkedin,  BsCode, BsCheckCircle, BsClock,  BsCalendar,  BsLightning, BsArrowUpRight, BsBookmark, BsDownload, BsEnvelope, BsCopy, BsPhone } from "react-icons/bs";
+import { BsGithub, BsLinkedin,  BsCode, BsCheckCircle, BsClock,  BsCalendar,  BsLightning,  BsBookmark, BsDownload, BsEnvelope, BsCopy, BsPhone } from "react-icons/bs";
 import { motion } from "framer-motion";
 
 
