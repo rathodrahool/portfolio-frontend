@@ -9,7 +9,7 @@ import {
   BsCode,
   BsServer
 } from "react-icons/bs";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface ContactInfo {
   type: string;
@@ -84,7 +84,7 @@ const CurrentProjectCard = () => {
     name: "CorrectEase",
     description: "Need help making your writing better? CorrectEase is your writing companion that helps polish your text exactly the way you want. It's simple to use, works in real-time, and gives you full control over how your text sounds.",
     status: "In Development",
-    liveUrl: "https://correctease.rahulrathod.in",
+    liveUrl: "https://correctease-frontend.netlify.app/",
     demoVideo: "https://www.youtube.com/embed/J96_aFWCsgo?si=0vbMTuxd5cHuHCPT&autoplay=0&mute=1&vq=hd1080&modestbranding=1",
     repositories: {
       frontend: "https://github.com/rathodrahool/CorrectEase",
@@ -107,140 +107,154 @@ const CurrentProjectCard = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [showSourceModal, setShowSourceModal] = useState(false);
 
-  const handleVideoClick = () => {
-    setIsPlaying(true);
-  };
-
   return (
-    <motion.div 
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      className="bg-gradient-to-r from-purple-100 to-blue-100 border-4 border-black p-6 relative overflow-hidden"
-    >
-      {/* Live Development Badge */}
-      <div className="absolute top-4 right-4 flex items-center gap-2 bg-red-500 text-white px-3 py-1 border-2 border-black">
-        <motion.div
-          animate={{ opacity: [1, 0.5, 1] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-        >
-          <BsCircleFill className="w-2 h-2" />
-        </motion.div>
-        <span className="font-bold text-sm">LIVE DEVELOPMENT</span>
+    <div className="relative">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="grid grid-cols-10 h-full">
+          {[...Array(20)].map((_, i) => (
+            <div key={i} className="border-2 border-black"></div>
+          ))}
+        </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* Left Column */}
-        <div>
-          <h3 className="text-2xl font-bold bg-white inline-block px-4 py-2 border-2 border-black transform -rotate-1 mb-6">
-            <BsCodeSlash className="inline-block mr-2" />
-            {projectDetails.name}
-          </h3>
-          
-          <p className="text-lg mb-6">{projectDetails.description}</p>
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="relative bg-white border-8 border-black p-6 shadow-[16px_16px_0px_0px_rgba(0,0,0,1)]"
+      >
+        {/* Project Status Badge */}
+        <div className="absolute -top-6 -right-6 bg-red-400 px-6 py-2 border-4 border-black transform rotate-12">
+          <motion.div className="flex items-center gap-2"
+            animate={{ scale: [1, 1.1, 1] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          >
+            <BsCircleFill className="w-3 h-3" />
+            <span className="font-black uppercase tracking-wider">In Progress</span>
+          </motion.div>
+        </div>
 
-          <div className="space-y-4 mb-6">
-            <h4 className="font-bold">Key Features:</h4>
-            <ul className="space-y-2">
-              {projectDetails.features.map((feature, index) => (
-                <li key={index} className="flex items-center gap-2">
-                  <span className="text-xl">•</span>
-                  <span className="text-lg">{feature}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+        <div className="grid grid-cols-2 gap-8">
+          {/* Content Column */}
+          <div className="relative col-span-1">
+            {/* Decorative Elements */}
+            <div className="absolute -top-4 -left-4 w-8 h-8 bg-yellow-300 border-4 border-black transform -rotate-12"></div>
+            <div className="absolute -bottom-4 -right-4 w-8 h-8 bg-blue-300 border-4 border-black transform rotate-12"></div>
 
-          <div className="space-y-4 mb-6">
-            <div>
-              <h4 className="font-bold mb-2">Frontend Stack:</h4>
-              <div className="flex flex-wrap gap-2">
-                {projectDetails.tech.frontend.map((tech, index) => (
-                  <span key={index} className="bg-purple-100 px-3 py-1 border-2 border-black text-sm font-bold">
-                    {tech}
-                  </span>
+            <h3 className="text-3xl font-black mb-6 bg-purple-300 inline-block px-4 py-2 border-4 border-black transform -rotate-2">
+              {projectDetails.name}
+            </h3>
+            
+            <p className="text-lg mb-6 font-bold bg-green-100 p-4 border-4 border-black">
+              {projectDetails.description}
+            </p>
+
+            {/* Features */}
+            <div className="mb-6">
+              <h4 className="font-black text-xl mb-3 bg-yellow-300 inline-block px-4 py-2 border-4 border-black transform rotate-2">
+                Key Features
+              </h4>
+              <ul className="space-y-2">
+                {projectDetails.features.map((feature, index) => (
+                  <motion.li 
+                    key={index}
+                    initial={{ x: -20, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: index * 0.1 }}
+                    className="flex items-start gap-2 bg-white p-2 border-4 border-black hover:transform hover:-translate-y-1 transition-transform"
+                  >
+                    <span className="font-black text-xl">→</span>
+                    <span className="font-bold text-base">{feature}</span>
+                  </motion.li>
                 ))}
+              </ul>
+            </div>
+
+            {/* Tech Stack */}
+            <div className="space-y-4 mb-6">
+              <div>
+                <h4 className="font-black inline-block bg-blue-300 px-4 py-2 border-4 border-black transform -rotate-1">
+                  Frontend Stack
+                </h4>
+                <div className="flex flex-wrap gap-2 mt-3">
+                  {projectDetails.tech.frontend.map((tech, index) => (
+                    <span key={index} className="bg-purple-100 px-4 py-2 border-4 border-black font-bold hover:transform hover:-translate-y-1 transition-transform">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <h4 className="font-black inline-block bg-green-300 px-4 py-2 border-4 border-black transform rotate-1">
+                  Backend Stack
+                </h4>
+                <div className="flex flex-wrap gap-2 mt-3">
+                  {projectDetails.tech.backend.map((tech, index) => (
+                    <span key={index} className="bg-blue-100 px-4 py-2 border-4 border-black font-bold hover:transform hover:-translate-y-1 transition-transform">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
-            <div>
-              <h4 className="font-bold mb-2">Backend Stack:</h4>
-              <div className="flex flex-wrap gap-2">
-                {projectDetails.tech.backend.map((tech, index) => (
-                  <span key={index} className="bg-blue-100 px-3 py-1 border-2 border-black text-sm font-bold">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
 
-          <div className="flex flex-wrap gap-4">
-            {projectDetails.liveUrl && (
+            {/* Action Buttons */}
+            <div className="flex flex-wrap gap-3">
               <motion.a
                 href={projectDetails.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-green-500 text-white px-4 py-2 font-bold border-2 border-black hover:bg-green-600 transition-colors"
-                whileHover={{ scale: 1.05 }}
+                className="bg-green-400 px-6 py-3 border-4 border-black font-black uppercase tracking-wider shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-2 hover:translate-y-2 transition-all"
+                whileHover={{ scale: 1.02 }}
               >
-                <BsGlobe />
-                View Live Demo
+                <BsGlobe className="inline-block mr-2" /> Live Demo
               </motion.a>
-            )}
-            <motion.button
-              onClick={() => setShowSourceModal(true)}
-              className="inline-flex items-center gap-2 bg-black text-white px-4 py-2 font-bold border-2 border-black hover:bg-gray-800 transition-colors"
-              whileHover={{ scale: 1.05 }}
-            >
-              <BsGithub />
-              View Source
-            </motion.button>
-            {projectDetails.demoVideo && (
               <motion.button
-                onClick={() => setIsPlaying(true)}
-                className="inline-flex items-center gap-2 bg-blue-500 text-white px-4 py-2 font-bold border-2 border-black hover:bg-blue-600 transition-colors"
-                whileHover={{ scale: 1.05 }}
+                onClick={() => setShowSourceModal(true)}
+                className="bg-black text-white px-6 py-3 border-4 border-black font-black uppercase tracking-wider shadow-[8px_8px_0px_0px_rgba(34,197,94,1)] hover:shadow-none hover:translate-x-2 hover:translate-y-2 transition-all"
+                whileHover={{ scale: 1.02 }}
               >
-                <BsPlayCircle />
-                Watch Demo
+                <BsGithub className="inline-block mr-2" /> Source
               </motion.button>
-            )}
+            </div>
           </div>
-        </div>
 
-        {/* Right Column - Video */}
-        <div className="relative h-[400px] lg:h-full min-h-[400px] border-4 border-black bg-white p-2">
-          <div className="relative w-full h-full">
-            <iframe
-              className="w-full h-full"
-              src={`${projectDetails.demoVideo}${isPlaying ? '&autoplay=1' : ''}`}
-              title="CorrectEase Demo"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-              referrerPolicy="strict-origin-when-cross-origin"
-            />
-            {!isPlaying && (
-              <div 
-                className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 cursor-pointer group"
-                onClick={handleVideoClick}
-              >
-                <motion.div
-                  whileHover={{ scale: 1.1 }}
-                  className="bg-white p-4 rounded-full group-hover:bg-gray-100 transition-colors"
-                >
-                  <BsPlayCircle className="w-12 h-12 text-black" />
-                </motion.div>
+          {/* Video Column */}
+          <div className="relative col-span-1">
+            <div className="absolute -top-4 -left-4 w-full h-full border-4 border-black bg-yellow-200 transform rotate-2"></div>
+            <div className="relative border-8 border-black bg-white h-[calc(100%-2rem)]">
+              <div className="h-full">
+                <iframe
+                  className="w-full h-full"
+                  src={`${projectDetails.demoVideo}${isPlaying ? '&autoplay=1' : ''}`}
+                  title="CorrectEase Demo"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  referrerPolicy="strict-origin-when-cross-origin"
+                />
+                {!isPlaying && (
+                  <motion.div 
+                    className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center cursor-pointer"
+                    onClick={() => setIsPlaying(true)}
+                    whileHover={{ scale: 1.02 }}
+                  >
+                    <div className="bg-white p-6 border-4 border-black transform -rotate-2 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+                      <BsPlayCircle className="w-16 h-16" />
+                    </div>
+                  </motion.div>
+                )}
               </div>
-            )}
+            </div>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       <SourceCodeModal 
         isOpen={showSourceModal}
         onClose={() => setShowSourceModal(false)}
         repos={projectDetails.repositories}
       />
-    </motion.div>
+    </div>
   );
 };
 
