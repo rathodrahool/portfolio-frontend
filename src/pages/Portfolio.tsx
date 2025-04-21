@@ -82,21 +82,21 @@ const SourceCodeModal = ({ isOpen, onClose, repos }: {
 const CurrentProjectCard = () => {
   const projectDetails = {
     name: "CorrectEase",
-    description: "Ever wish your writing felt a little sharper? A bit more natural? This tool's built to help with exactly that. Think of it like Grammarly, but with more control. It's clean. Easy to use. Inspired by the way Jira keeps things simple but powerful.",
+    description: "Need help making your writing better? CorrectEase is your writing companion that helps polish your text exactly the way you want. It's simple to use, works in real-time, and gives you full control over how your text sounds.",
     status: "In Development",
     liveUrl: "https://correctease.rahulrathod.in",
-    demoVideo: "https://www.youtube.com/embed/J96_aFWCsgo?si=0vbMTuxd5cHuHCPT&autoplay=0&mute=1",
+    demoVideo: "https://www.youtube.com/embed/J96_aFWCsgo?si=0vbMTuxd5cHuHCPT&autoplay=0&mute=1&vq=hd1080&modestbranding=1",
     repositories: {
       frontend: "https://github.com/rathodrahool/CorrectEase",
       backend: "https://github.com/rathodrahool/CorrectEase-Backend"
     },
     features: [
-      "Switch between writing styles — formal, casual, concise, or standard",
-      "Real-time content updates with automatic saving",
-      "Comprehensive edit history with search and filtering",
-      "Built-in user management system for teams",
-      "Integration with multiple AI providers for flexibility",
-      "Enterprise-grade security and authentication"
+      "Choose how you want to sound - professional, friendly, or straight to the point",
+      "See your text improve as you type with instant AI suggestions",
+      "Keep track of all your previous versions with smart search",
+      "Perfect for teams - everyone gets their own workspace",
+      "Works with multiple AI engines for the best results",
+      "Keeps your content secure with advanced protection"
     ],
     tech: {
       frontend: ["React 18", "TypeScript", "Vite", "TailwindCSS", "React Router"],
