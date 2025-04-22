@@ -305,6 +305,9 @@ const Portfolio = () => {
           <h1 className="text-4xl md:text-6xl font-bold mb-4">
             Hello, I'm Rahul.
           </h1>
+          <p className="text-lg md:text-xl mb-6 max-w-3xl bg-yellow-100 p-3 border-4 border-black transform -rotate-1">
+            Welcome to my collection of personal projects - where I experiment, learn, and showcase my development skills.
+          </p>
           <div className="text-5xl md:text-7xl font-bold mb-6">
             I'm a 
             <div className="bg-blue-400 inline-block ml-4 px-4 py-2 border-4 border-black transform -rotate-2">
