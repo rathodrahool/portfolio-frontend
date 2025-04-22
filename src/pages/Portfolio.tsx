@@ -108,122 +108,132 @@ const CurrentProjectCard = () => {
   const [showSourceModal, setShowSourceModal] = useState(false);
 
   return (
-    <div className="relative">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="grid grid-cols-10 h-full">
-          {[...Array(20)].map((_, i) => (
-            <div key={i} className="border-2 border-black"></div>
-          ))}
-        </div>
-      </div>
-
+    <div className="relative p-2">
+      {/* Main Card Container */}
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="relative bg-white border-8 border-black p-6 shadow-[16px_16px_0px_0px_rgba(0,0,0,1)]"
+        className="relative bg-[#FFFAF4] border-8 border-black p-8 shadow-[16px_16px_0px_0px_rgba(0,0,0,1)]"
       >
-        {/* Project Status Badge */}
-        <div className="absolute -top-6 -right-6 bg-red-400 px-6 py-2 border-4 border-black transform rotate-12">
-          <motion.div className="flex items-center gap-2"
-            animate={{ scale: [1, 1.1, 1] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          >
-            <BsCircleFill className="w-3 h-3" />
-            <span className="font-black uppercase tracking-wider">In Progress</span>
-          </motion.div>
-        </div>
-
-        <div className="grid grid-cols-2 gap-8">
-          {/* Content Column */}
-          <div className="relative col-span-1">
-            {/* Decorative Elements */}
-            <div className="absolute -top-4 -left-4 w-8 h-8 bg-yellow-300 border-4 border-black transform -rotate-12"></div>
-            <div className="absolute -bottom-4 -right-4 w-8 h-8 bg-blue-300 border-4 border-black transform rotate-12"></div>
-
-            <h3 className="text-3xl font-black mb-6 bg-purple-300 inline-block px-4 py-2 border-4 border-black transform -rotate-2">
+        {/* Project Header Section */}
+        <div className="flex flex-col md:flex-row justify-between items-start mb-8">
+          <div className="relative">
+            <div className="absolute -top-4 -left-4 w-24 h-24 bg-yellow-300 border-4 border-black -z-10"></div>
+            <h3 className="text-4xl font-black bg-white px-6 py-3 border-4 border-black transform -rotate-2">
               {projectDetails.name}
             </h3>
-            
-            <p className="text-lg mb-6 font-bold bg-green-100 p-4 border-4 border-black">
-              {projectDetails.description}
-            </p>
+            <div className="mt-4 ml-4">
+              <motion.div 
+                className="flex items-center gap-2 bg-red-400 w-fit px-4 py-1 border-4 border-black"
+                animate={{ y: [0, -5, 0] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
+                <BsCircleFill className="w-2 h-2 animate-pulse" />
+                <span className="font-black uppercase text-sm tracking-wider">Completed</span>
+              </motion.div>
+            </div>
+          </div>
+          
+          <div className="flex gap-3 mt-6 md:mt-0">
+            {/* Action Buttons */}
+            <motion.a
+              href={projectDetails.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-green-400 px-6 py-3 border-4 border-black font-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all"
+              whileHover={{ scale: 1.02 }}
+            >
+              <BsGlobe className="inline-block mr-2" /> Demo
+            </motion.a>
+            <motion.button
+              onClick={() => setShowSourceModal(true)}
+              className="bg-black text-white px-6 py-3 border-4 border-black font-black shadow-[4px_4px_0px_0px_rgba(34,197,94,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all"
+              whileHover={{ scale: 1.02 }}
+            >
+              <BsGithub className="inline-block mr-2" /> Code
+            </motion.button>
+          </div>
+        </div>
 
-            {/* Features */}
-            <div className="mb-6">
-              <h4 className="font-black text-xl mb-3 bg-yellow-300 inline-block px-4 py-2 border-4 border-black transform rotate-2">
+        {/* Main Content Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Left Column - Features */}
+          <div className="space-y-6">
+            <div className="relative">
+              <div className="absolute -top-2 -left-2 w-full h-full bg-blue-200 border-4 border-black -z-10"></div>
+              <p className="text-lg font-bold bg-white p-4 border-4 border-black">
+                {projectDetails.description}
+              </p>
+            </div>
+
+            <div className="relative">
+              <h4 className="inline-block font-black text-xl mb-4 bg-yellow-300 px-4 py-2 border-4 border-black transform -rotate-1">
                 Key Features
               </h4>
-              <ul className="space-y-2">
+              <ul className="space-y-2 relative">
+                <div className="absolute -top-2 -left-2 w-full h-full bg-purple-200 border-4 border-black -z-10"></div>
                 {projectDetails.features.map((feature, index) => (
                   <motion.li 
                     key={index}
                     initial={{ x: -20, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ delay: index * 0.1 }}
-                    className="flex items-start gap-2 bg-white p-2 border-4 border-black hover:transform hover:-translate-y-1 transition-transform"
+                    className="flex items-center gap-3 bg-white p-3 border-4 border-black hover:-translate-y-1 transition-transform"
                   >
                     <span className="font-black text-xl">→</span>
-                    <span className="font-bold text-base">{feature}</span>
+                    <span className="font-bold">{feature}</span>
                   </motion.li>
                 ))}
               </ul>
             </div>
-
-            {/* Tech Stack */}
-            <div className="space-y-4 mb-6">
-              <div>
-                <h4 className="font-black inline-block bg-blue-300 px-4 py-2 border-4 border-black transform -rotate-1">
-                  Frontend Stack
-                </h4>
-                <div className="flex flex-wrap gap-2 mt-3">
-                  {projectDetails.tech.frontend.map((tech, index) => (
-                    <span key={index} className="bg-purple-100 px-4 py-2 border-4 border-black font-bold hover:transform hover:-translate-y-1 transition-transform">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-              <div>
-                <h4 className="font-black inline-block bg-green-300 px-4 py-2 border-4 border-black transform rotate-1">
-                  Backend Stack
-                </h4>
-                <div className="flex flex-wrap gap-2 mt-3">
-                  {projectDetails.tech.backend.map((tech, index) => (
-                    <span key={index} className="bg-blue-100 px-4 py-2 border-4 border-black font-bold hover:transform hover:-translate-y-1 transition-transform">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Action Buttons */}
-            <div className="flex flex-wrap gap-3">
-              <motion.a
-                href={projectDetails.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-green-400 px-6 py-3 border-4 border-black font-black uppercase tracking-wider shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-2 hover:translate-y-2 transition-all"
-                whileHover={{ scale: 1.02 }}
-              >
-                <BsGlobe className="inline-block mr-2" /> Live Demo
-              </motion.a>
-              <motion.button
-                onClick={() => setShowSourceModal(true)}
-                className="bg-black text-white px-6 py-3 border-4 border-black font-black uppercase tracking-wider shadow-[8px_8px_0px_0px_rgba(34,197,94,1)] hover:shadow-none hover:translate-x-2 hover:translate-y-2 transition-all"
-                whileHover={{ scale: 1.02 }}
-              >
-                <BsGithub className="inline-block mr-2" /> Source
-              </motion.button>
-            </div>
           </div>
 
-          {/* Video Column */}
-          <div className="relative col-span-1">
-            <div className="absolute -top-4 -left-4 w-full h-full border-4 border-black bg-yellow-200 transform rotate-2"></div>
-            <div className="relative border-8 border-black bg-white h-[calc(100%-2rem)]">
-              <div className="h-full">
+          {/* Right Column - Video and Tech Stack */}
+          <div className="space-y-6">
+            {/* Tech Stack Grid */}
+            <div className="grid grid-cols-2 gap-4 mb-6">
+              <div>
+                <h4 className="font-black mb-3 bg-green-300 inline-block px-4 py-2 border-4 border-black transform rotate-1">
+                  Frontend
+                </h4>
+                <div className="flex flex-wrap gap-2">
+                  {projectDetails.tech.frontend.map((tech, index) => (
+                    <motion.span
+                      key={index}
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ delay: index * 0.1 }}
+                      className="bg-white px-3 py-1 border-4 border-black text-sm font-bold hover:-translate-y-1 transition-transform inline-block"
+                    >
+                      {tech}
+                    </motion.span>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <h4 className="font-black mb-3 bg-blue-300 inline-block px-4 py-2 border-4 border-black transform -rotate-1">
+                  Backend
+                </h4>
+                <div className="flex flex-wrap gap-2">
+                  {projectDetails.tech.backend.map((tech, index) => (
+                    <motion.span
+                      key={index}
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ delay: index * 0.1 }}
+                      className="bg-white px-3 py-1 border-4 border-black text-sm font-bold hover:-translate-y-1 transition-transform inline-block"
+                    >
+                      {tech}
+                    </motion.span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Video Section */}
+            <div className="relative h-[400px]">
+              <div className="absolute inset-0 bg-gradient-to-r from-yellow-200 to-green-200 border-4 border-black -z-10"></div>
+              <div className="relative border-8 border-black bg-white h-full">
                 <iframe
                   className="w-full h-full"
                   src={`${projectDetails.demoVideo}${isPlaying ? '&autoplay=1' : ''}`}
@@ -238,7 +248,7 @@ const CurrentProjectCard = () => {
                     onClick={() => setIsPlaying(true)}
                     whileHover={{ scale: 1.02 }}
                   >
-                    <div className="bg-white p-6 border-4 border-black transform -rotate-2 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+                    <div className="bg-white p-6 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
                       <BsPlayCircle className="w-16 h-16" />
                     </div>
                   </motion.div>
@@ -265,6 +275,10 @@ const Portfolio = () => {
     setIsModalOpen(true);
   };
 
+  const handleWorkClick = () => {
+    document.getElementById('project')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <div className="min-h-screen bg-[#FFF5EE] p-3 sm:p-4 md:p-6 lg:p-8 font-mono relative">
       {/* Navigation Bar */}
@@ -273,15 +287,14 @@ const Portfolio = () => {
           <div className="w-6 sm:w-8 h-6 sm:h-8 bg-blue-400 border-2 border-black rotate-12" />
           <span className="text-lg sm:text-xl font-bold">rahulrathod.in</span>
         </div>
-        <div className="flex gap-4 sm:gap-6">
-          <button 
-            onClick={handleContactClick}
-            className="font-bold hover:text-blue-500 transition-colors"
+        <div>
+          <motion.button
+            onClick={handleWorkClick}
+            className="bg-black text-white px-4 py-2 border-4 border-black font-black shadow-[4px_4px_0px_0px_rgba(34,197,94,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all"
+            whileHover={{ scale: 1.02 }}
           >
-            About
-          </button>
-          <a href="#skills" className="font-bold hover:text-blue-500">What I Do</a>
-          <a href="#work" className="font-bold hover:text-blue-500">My Work</a>
+            My Work
+          </motion.button>
         </div>
       </nav>
 
@@ -305,7 +318,7 @@ const Portfolio = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               className="bg-green-500 text-white px-6 py-3 border-4 border-black font-bold shadow-[8px_8px_0px_0px_rgba(34,197,94,1)]"
-              onClick={() => document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => document.getElementById('project')?.scrollIntoView({ behavior: 'smooth' })}
             >
               View My Work →
             </motion.button>
@@ -314,7 +327,7 @@ const Portfolio = () => {
       </div>
 
       {/* Current Project Section */}
-      <div className="mb-8 sm:mb-12">
+      <div id="project" className="mb-8 sm:mb-12 scroll-mt-24">
         <CurrentProjectCard />
       </div>
 
