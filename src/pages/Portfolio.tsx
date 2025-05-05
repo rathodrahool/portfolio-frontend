@@ -457,6 +457,52 @@ const KeenoteProjectCard = () => {
   );
 };
 
+const SkillsSection = () => {
+  const skills = [
+    { name: "JavaScript", icon: "⚡" },
+    { name: "TypeScript", icon: "🔷" },
+    { name: "SQL", icon: "📊" },
+    { name: "Node.js", icon: "🟢" },
+    { name: "NestJS", icon: "🐈" },
+    { name: "Express.js", icon: "⚡" },
+    { name: "MongoDB/Mongoose", icon: "🍃" },
+    { name: "PostgreSQL/TypeORM", icon: "🐘" },
+    { name: "JEST/Unit Testing", icon: "🧪" },
+    { name: "WebSocket/Socket.io", icon: "🔌" },
+    { name: "API Design", icon: "📐" },
+    { name: "Web Security Testing", icon: "🔒" }
+  ];
+
+  return (
+    <div className="mb-12 border-4 border-black bg-white p-6 md:p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+      <div className="relative mb-6">
+        <div className="absolute -top-4 -left-4 w-16 h-16 bg-purple-300 border-4 border-black rotate-12" />
+        <h2 className="text-3xl md:text-4xl font-bold relative z-10">
+          Backend Skills
+        </h2>
+      </div>
+      
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+        {skills.map((skill, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.1 }}
+            className="relative group"
+          >
+            <div className="absolute inset-0 bg-yellow-200 border-4 border-black -z-10 transform translate-x-2 translate-y-2" />
+            <div className="bg-white p-4 border-4 border-black hover:-translate-y-1 hover:-translate-x-1 transition-transform">
+              <span className="text-2xl mr-2">{skill.icon}</span>
+              <span className="font-bold">{skill.name}</span>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 const Portfolio = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -517,6 +563,9 @@ const Portfolio = () => {
           </div>
         </div>
       </div>
+
+      {/* Skills Section */}
+      <SkillsSection />
 
       {/* Current Project Section */}
       <div id="project" className="space-y-12 scroll-mt-24">
