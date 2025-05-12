@@ -1,22 +1,15 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { 
-  BsCodeSlash,
   BsGithub,
-  BsArrowRight,
   BsCircleFill,
   BsPlayCircle,
   BsGlobe,
   BsCode,
   BsServer
 } from "react-icons/bs";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion,  } from "framer-motion";
 
-interface ContactInfo {
-  type: string;
-  value: string;
-  icon: React.ReactNode;
-  label: string;
-}
+
 
 const SourceCodeModal = ({ isOpen, onClose, repos }: { 
   isOpen: boolean; 
@@ -504,11 +497,9 @@ const SkillsSection = () => {
 };
 
 const Portfolio = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleContactClick = () => {
-    setIsModalOpen(true);
-  };
+
+
 
   const handleWorkClick = () => {
     document.getElementById('project')?.scrollIntoView({ behavior: 'smooth' });
