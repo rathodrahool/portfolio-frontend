@@ -459,18 +459,18 @@ const KeenoteProjectCard = () => {
 
 const SkillsSection = () => {
   const skills = [
-    { name: "JavaScript", icon: "⚡" },
-    { name: "TypeScript", icon: "🔷" },
-    { name: "SQL", icon: "📊" },
-    { name: "Node.js", icon: "🟢" },
-    { name: "NestJS", icon: "🐈" },
-    { name: "Express.js", icon: "⚡" },
-    { name: "MongoDB/Mongoose", icon: "🍃" },
-    { name: "PostgreSQL/TypeORM", icon: "🐘" },
-    { name: "JEST/Unit Testing", icon: "🧪" },
-    { name: "WebSocket/Socket.io", icon: "🔌" },
-    { name: "API Design", icon: "📐" },
-    { name: "Web Security Testing", icon: "🔒" }
+    { name: "JavaScript/TypeScript", icon: "🟨" },  // JavaScript color
+    { name: "SQL Databases", icon: "💾" },          // Database icon
+    { name: "Node.js", icon: "💚" },                // Node.js green heart
+    { name: "NestJS/Express.js", icon: "🏃" },      // Fast/Express
+    { name: "MongoDB/Mongoose", icon: "🍃" },       // Leaf for MongoDB
+    { name: "PostgreSQL/TypeORM", icon: "🐘" },     // Postgres elephant
+    { name: "JEST/Unit Testing", icon: "🧪" },      // Test tube
+    { name: "WebSocket/Socket.io", icon: "⚡" },     // Real-time/lightning
+    { name: "API Design", icon: "🔌" },             // Connection/API
+    { name: "Web Security", icon: "🔒" },           // Lock for security
+    { name: "Git/Github", icon: "🐙" },             // Github octopus
+    { name: "AI Prompting", icon: "🤖" },           // Robot for AI          // Star for Google AI
   ];
 
   return (
